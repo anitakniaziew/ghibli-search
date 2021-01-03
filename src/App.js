@@ -47,7 +47,7 @@ function App() {
 
   return (
     <Router>
-      <ModeContext.Provider mode={currentMode}>
+      <ModeContext.Provider value={currentMode}>
         <div className="App" style={{backgroundColor: currentMode.background, color: currentMode.textColor}}>
           <ModeToggleButton toggleMode={toggleMode} currentMode={currentMode}/>
           <Provider store={store}>

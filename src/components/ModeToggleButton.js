@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ModeContext } from '../mode-context'
 
-const ModeToggleButton = ({toggleMode, currentMode}) => {
-  return <button onClick={toggleMode}>
-    Switch to {currentMode.name === 'light' ? 'dark' : 'light'} mode
+const ModeToggleButton = ({toggleMode}) => {
+  const mode = useContext(ModeContext);
+  return <button onClick={toggleMode} style={{ backgroundColor: mode.buttonBackground, color: mode.buttonTextColor}}>
+    Switch to {mode.name} mode
   </button>
 }
 
