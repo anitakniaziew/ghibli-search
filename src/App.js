@@ -17,18 +17,19 @@ const initialState = {
 const store = createStore(moviesReducer, initialState);
 
 function moviesReducer(state, action) {
+  if (action.type === 'FETCH_MOVIES') {
+    return {
+      ...state,
+      movies: {
+        ...state.movies,
+        list: action.list,
+      },
+    };
+  }
   return state;
 }
 
 function App() {
-  // async function getMovies() {
-  //   const movies = await fetch('https://ghibliapi.herokuapp.com/films')
-  //     .then((res) => res.json())
-  //     .then((res) => res.results)
-  //     .catch((err) => console.log(err));
-  //   return movies;
-  // }
-
   return (
     <div className="App">
       <Provider store={store}>
