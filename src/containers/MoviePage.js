@@ -14,8 +14,6 @@ const MoviePage = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-  console.log(movie)
-
   return <MoviePageComponent movie={movie} />;
 };
 
