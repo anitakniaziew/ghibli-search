@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-import MovieList from './containers/MovieList';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './App.css';
+
+const MovieList = lazy(() => import('./containers/MovieList'));
+const MoviePage = lazy(() => import('./containers/MoviePage'));
 
 const initialState = {
   movies: {
@@ -31,11 +33,18 @@ function moviesReducer(state, action) {
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <Provider store={store}>
-        <MovieList />
+        <Suspense fallback={<div>LOADING</div>}>
+          <Switch>
+            <Route exact path="/" component={MovieList} />
+            <Route path={`/movies/:id`} component={MoviePage} />
+          </Switch>
+        </Suspense>        
       </Provider>
-    </div>
+      </div>
+    </Router> 
   );
 }
 
